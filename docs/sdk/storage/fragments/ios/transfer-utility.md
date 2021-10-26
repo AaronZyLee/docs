@@ -289,7 +289,7 @@ func application(_ application: UIApplication, handleEventsForBackgroundURLSessi
 
 ## Managing Transfers When an App Restarts
 
-When an app that has initiated a transfer restarts (if it has been terminated by the system and not force-closed), it is possible that the transfer may still be in progress or completed. Tasks for uploads, downloads and multipart uploads can be monitored with progress and completion handlers. In the code below accessing the default instance of the Transfer Utility has a completion handler which is run once the recovery process has completed. Any network operations which were still running and were persisted by Transfer Utility are restored and once the completion hander is run it is ready to attach handlers for progress and completion.
+When an app that has initiated a transfer restarts (if it has been terminated by the system and not force-closed), it is possible that the transfer may still be in progress or completed. Tasks for uploads, downloads and multipart uploads can be monitored with progress and completion handlers. In the code below accessing the default instance of the Transfer Utility has a completion handler which is run once the recovery process has completed. Any network operations which were still running and were persisted by Transfer Utility are restored. Once the completion hander is done it is ready to attach handlers for progress and completion.
 
 ```swift
 
@@ -314,7 +314,7 @@ func reattachHandlers() {
 }
 ```
 
-This code is only attaching handlers for multipart uploads. The other handlers are left as `nil` but they could be defined as well depending on your needs. Handlers are given the `task` which includes the `transferID` property which can be used to associate with network operations. Place this initialiation routine at the start of your app launch lifecycle.
+This code is only attaching handlers for multipart uploads. The other handlers are left as `nil` but they could be defined as well depending on your needs. Handlers are given the `task` which includes the `transferID` property which can be used to associate with network operations. Place this initialization routine at the start of your app launch lifecycle.
 
 ## Manage a Transfer when a Suspended App Returns to the Foreground
 
